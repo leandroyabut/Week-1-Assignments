@@ -19,31 +19,33 @@ public class Patterns {
 
     /**
      *
-     * @param base
-     * @param centered
-     * @param flipped
+     * @param base the length of the base
+     * @param centered if the pattern is centered
+     * @param flipped if the patter is flipped
+     * @param dotLength how many dots to print
+     * @param above if the dots should be printed above the pattern
      */
     public static void printPattern(int base, boolean centered, boolean flipped, int dotLength, boolean above) {
-        ArrayList<String> patternLines = new ArrayList<String>();
+        ArrayList<String> patternLines = new ArrayList<>();
 
-        String dotLine = "";
+        StringBuilder dotLine = new StringBuilder();
         for(int i = 0; i < dotLength; i++)
-            dotLine+=".";
+            dotLine.append(".");
 
-        if(!above) patternLines.add(dotLine);
+        if(!above) patternLines.add(dotLine.toString());
 
         for(int i = 1; i <= base; i++) {
-            String line = "";
+            StringBuilder line = new StringBuilder();
             for (int x = 0; x < i; x++) {
-                line += "*";
+                line.append("*");
             }
 
-            if(centered) line = centerString(line, base);
+            if(centered) line = new StringBuilder(centerString(line.toString(), base));
 
-            if(!centered || centered && i%2!=0) patternLines.add(line);
+            if(!centered || i % 2 != 0) patternLines.add(line.toString());
         }
 
-        if(above) patternLines.add(dotLine);
+        if(above) patternLines.add(dotLine.toString());
         if(flipped) Collections.reverse(patternLines);
 
         for(String line : patternLines) {
@@ -54,14 +56,14 @@ public class Patterns {
 
     /**
      *
-     * @param text
-     * @param len
+     * @param text string to be centered
+     * @param len buffer length
      * @return centered string
      */
     public static String centerString(String text, int len){
         String out = String.format("%"+len+"s%s%"+len+"s", "",text,"");
-        float mid = (out.length()/2);
-        float start = mid - (len/2);
+        float mid = (float)out.length()/(float)2;
+        float start = mid - (float)(len / 2);
         float end = start + len;
         return out.substring((int)start, (int)end);
     }
