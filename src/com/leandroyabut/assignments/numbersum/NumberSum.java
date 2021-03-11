@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class NumberSum {
 
     public static void main(String... args) {
+
         ArrayList<Integer> numbers = new ArrayList<>();
+
         int numberCount = promptForNumber("How many numbers would you like to add? ", 2, 100);
 
         for(int i = 1; i <= numberCount; i++) {
