@@ -1,7 +1,6 @@
 package com.leandroyabut.assignments.mondays;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.Scanner;
@@ -18,8 +17,8 @@ public class Mondays {
         int length = month.getMonth().length(year.isLeap());
 
         for(int i = 1; i <= length; i++) {
-            LocalDate day = month.atDay(i);
-            if(day.getDayOfWeek().equals(DayOfWeek.MONDAY)) {
+            DayOfWeek day = month.atDay(i).getDayOfWeek();
+            if(day.equals(DayOfWeek.MONDAY)) {
                 System.out.println(day.toString());
             }
         }
